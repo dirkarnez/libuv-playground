@@ -11,14 +11,14 @@ jobs:
     strategy:
       matrix:
         compiler:
-        - {
-            name: "x86_64-8.1.0-release-posix-seh-rt_v6-rev0",
-            url: "https://github.com/dirkarnez/cpp-tools/raw/main/x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z"
-          }
         # - {
-        #     name: "winlibs-x86_64-posix-seh-gcc-11.2.0-mingw-w64-9.0.0-r1",
-        #     url: "https://github.com/brechtsanders/winlibs_mingw/releases/download/11.2.0-12.0.1-9.0.0-r1/winlibs-x86_64-posix-seh-gcc-11.2.0-mingw-w64-9.0.0-r1.zip"
+        #     name: "x86_64-8.1.0-release-posix-seh-rt_v6-rev0",
+        #     url: "https://github.com/dirkarnez/cpp-tools/raw/main/x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z"
         #   }
+        - {
+            name: "winlibs-x86_64-posix-seh-gcc-11.2.0-mingw-w64-9.0.0-r1",
+            url: "https://github.com/brechtsanders/winlibs_mingw/releases/download/11.2.0-12.0.1-9.0.0-r1/winlibs-x86_64-posix-seh-gcc-11.2.0-mingw-w64-9.0.0-r1.zip"
+          }
         # - {
         #     name: "msvc2019"
         #   }
@@ -50,8 +50,8 @@ jobs:
           
       - shell: cmd
         run: |
-          curl https://github.com/dirkarnez/portaudio-prebuilt/releases/download/v19.7.0/portaudio-v19.7.0-mingw64-x86_64-posix-seh-rev0-8.1.0.zip -L -O &&^
-          7z.exe x portaudio-v19.7.0-mingw64-x86_64-posix-seh-rev0-8.1.0.zip -o"portaudio-v19.7.0-mingw64-x86_64-posix-seh-rev0-8.1.0"
+          curl https://github.com/dirkarnez/libuv-prebuilt/releases/download/v1.47.0/libuv-v1.47.0-winlibs-x86_64-posix-seh-gcc-11.2.0-mingw-w64-9.0.0-r1.zip -L -O &&^
+          7z.exe x libuv-v1.47.0-winlibs-x86_64-posix-seh-gcc-11.2.0-mingw-w64-9.0.0-r1.zip -o"libuv-v1.47.0-winlibs-x86_64-posix-seh-gcc-11.2.0-mingw-w64-9.0.0-r1"
 
       # - shell: cmd
       #   run: |
@@ -84,11 +84,10 @@ jobs:
             ${{ github.workspace }}\cmake-3.24.0-windows-x86_64\bin;
             set CD_LINUX=%CD:\=/%
             gcc --version &&^
-            cd ${{ env.libraryName }} &&^
             cmake.exe -G"MinGW Makefiles" ^
             -DCMAKE_BUILD_TYPE=Release ^
             -DBUILD_SHARED_LIBS=OFF ^
-            -Dportaudio_DIR="%CD_LINUX%/portaudio-v19.7.0-mingw64-x86_64-posix-seh-rev0-8.1.0/lib/cmake/portaudio" ^
+            -Dlibuv_DIR="%CD_LINUX%/libuv-v1.47.0-winlibs-x86_64-posix-seh-gcc-11.2.0-mingw-w64-9.0.0-r1/lib/cmake/libuv" ^
             -B./cmake-build &&^
             cd cmake-build && cmake --build . --config Release
 
