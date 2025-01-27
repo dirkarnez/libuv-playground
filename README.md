@@ -14,3 +14,4 @@ libuv-playground
     - [crouton/src/io/uv/Filesystem.cc at main · couchbaselabs/crouton](https://github.com/couchbaselabs/crouton/blob/main/src/io/uv/Filesystem.cc)
     - [crouton/src/io/uv/FileStream.cc at main · couchbaselabs/crouton](https://github.com/couchbaselabs/crouton/blob/main/src/io/uv/FileStream.cc)
     - [U8/AsyncIO/IOFile.cpp at master · UniversaBlockchain/U8](https://github.com/UniversaBlockchain/U8/blob/master/AsyncIO/IOFile.cpp)
+- http://kegel.com/dkftpbench/nonblocking.html
